@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (donateButton != null)
         {
-            Log.v("Donate", "Really got the donate button");
+            Log.v("Donate", "Really got the donate buttonn");
         }
 
         paymentMethod = (RadioGroup)   findViewById(R.id.paymentMethod);
