@@ -19,11 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.models.Donation;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Base{
 
     private Button donateButton;
     private RadioGroup paymentMethod;
@@ -98,20 +99,13 @@ public class MainActivity extends AppCompatActivity {
                 donatedAmount = Integer.parseInt(text);
         }
 
-        if (!targetAchieved)
+        if (donatedAmount > 0)
         {
-            totalDonated  = totalDonated + donatedAmount;
-            targetAchieved = totalDonated >= 10000;
+            newDonation(new Donation(donatedAmount, method));
             progressBar.setProgress(totalDonated);
             String totalDonatedStr = "$" + totalDonated;
             amountTotal.setText(totalDonatedStr);
         }
-        else
-        {
-            Toast toast = Toast.makeText(this, "Target Exceeded!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
 
-        Log.v("Donate", amountPicker.getValue() + " donated by " +  method + "\nCurrent total " + totalDonated);
     }
 }
