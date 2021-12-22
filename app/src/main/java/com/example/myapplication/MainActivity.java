@@ -84,7 +84,7 @@ public class MainActivity extends Base{
 
         if (donatedAmount > 0)
         {
-            newDonation(new Donation(donatedAmount, method));
+            app.newDonation(new Donation(donatedAmount, method));
             totalDonated  = totalDonated + donatedAmount;
             progressBar.setProgress(totalDonated);
             String totalDonatedStr = "$" + totalDonated;

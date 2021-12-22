@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +45,7 @@ public class Base extends AppCompatActivity
         MenuItem reset = menu.findItem(R.id.menuReset);
         if(app.dbManager.getAll().isEmpty())
         {
-            report.setEnabled(false);
+            report.setEnabled(true);
             reset.setEnabled(false);
         }
         else {
@@ -60,7 +61,7 @@ public class Base extends AppCompatActivity
             }
         }
         else {
-            report.setVisible(false);
+            report.setVisible(true);
             donate.setVisible(true);
             reset.setVisible(false);
         }
@@ -74,5 +75,11 @@ public class Base extends AppCompatActivity
     {
         startActivity (new Intent(this, MainActivity.class));
     }
-    public void reset(MenuItem item) {}
+    public void reset(MenuItem item) {
+        app.dbManager.reset();
+        app.totalDonated = 0;
+        report(item);
+        TextView amountTotal = (TextView) findViewById(R.id.totalSoFar);
+        amountTotal.setText("$" + app.totalDonated);
+    }
 }
